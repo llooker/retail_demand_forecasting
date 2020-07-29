@@ -354,7 +354,7 @@ view: metrics {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.week ;;
+    sql: DATE_SUB(${TABLE}.week, INTERVAL 45 DAY) ;;
   }
 
   dimension: week_index_health {

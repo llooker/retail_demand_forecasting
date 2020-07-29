@@ -4,6 +4,7 @@ include: "/iowa_liquor/*.view.lkml"
 include: "/signals/*.view.lkml"
 # include: "/views/*.view.lkml"
 
+persist_for: "24 hours"
 
 explore: liquor_sales_historic_predicted {
   group_label: "Retail Demand Forecasting"
@@ -13,7 +14,6 @@ explore: liquor_sales_historic_predicted {
 }
 
 explore: liquor_sales_predicted {
-  sql_always_where: ${calendar_date} < CURRENT_DATE ;;
   group_label: "Retail Demand Forecasting"
   view_label: "Liquor Sales"
   label: "Iowa Liquor Sales (Predicted Only)"
@@ -24,7 +24,6 @@ explore: liquor_sales_predicted {
     relationship: many_to_many
     sql_on: ${liquor_sales_predicted.calendar_week} = ${metrics.measurement_week}
             AND lower(${liquor_sales_predicted.brand}) = ${metrics.term}
-            ${metrics.measurement_date} < CURRENT_DATE
             ;;
   }
 
@@ -51,7 +50,6 @@ explore: liquor_sales_predicted {
     sql_on: ${liquor_sales_predicted.calendar_date} = ${holidays.date_date} ;;
     sql_where: ((${holidays.type} IN ('Sporting event','Federal Holiday'))
     OR ${holidays.name} IN ("Mother's Day", "Father's Day", "Valentine's Day"))
-    AND ${holidays.date_date} < CURRENT_DATE
     ;;
   }
 

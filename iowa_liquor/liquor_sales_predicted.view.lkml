@@ -50,11 +50,6 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: ${TABLE}.pk ;;
   }
 
-  dimension: is_forecasted {
-    type: yesno
-    sql: ${calendar_date} < CURRENT_DATE ;;
-  }
-
   dimension: type {
     label: "Forecasted"
     type: yesno
@@ -197,14 +192,14 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
   dimension: gross_margin {
     type: number
     hidden: yes
-    sql: ${state_bottle_retail}-${state_bottle_cost} ;;
+    sql: (${state_bottle_retail}-${state_bottle_cost})*${bottles_sold} ;;
     value_format_name: usd
   }
 
   measure: total_gross_margin {
     group_label: "Actual"
     type: sum
-    sql: ${gross_margin}*${bottles_sold} ;;
+    sql: ${gross_margin} ;;
     value_format_name: usd
   }
 
@@ -232,10 +227,16 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: ${TABLE}.sale_dollars ;;
   }
 
+  dimension: revenue {
+    hidden: yes
+    type: number
+    sql: ${state_bottle_retail}*${bottles_sold} ;;
+  }
+
   measure: total_revenue {
     group_label: "Actual"
     type: sum
-    sql: ${state_bottle_retail}*${bottles_sold} ;;
+    sql: ${revenue} ;;
     value_format_name: usd
   }
 
@@ -457,11 +458,11 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
   dimension: gross_margin_promotion {
     type: number
     hidden: yes
-    sql:  (${state_bottle_retail}*(1-
+    sql:  ((${state_bottle_retail}*(1-
 
     CASE WHEN ${promotion_boost} > 1 THEN {{ promotion_amount._parameter_value }} ELSE 0 END
 
-    ))-${state_bottle_cost} ;;
+    ))-${state_bottle_cost})*${predicted_total_bottles_sold_promotion} ;;
     value_format_name: usd
   }
 
@@ -469,7 +470,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     group_label: "Applied Promotion"
     label: "Total Predicted Gross Margin (Promotion)"
     type: sum
-    sql: ${gross_margin_promotion}*${predicted_total_bottles_sold_promotion} ;;
+    sql: ${gross_margin_promotion};;
     value_format_name: usd
   }
 
@@ -480,6 +481,76 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: ${total_predicted_revenue_promotion}/${total_predicted_bottles_sold_promotion} ;;
     value_format_name: usd
   }
+
+  #### ACTUAL + FORECAST ####
+
+  measure: actual_revenue_filtered {
+    hidden: yes
+    type: sum
+    sql: ${revenue};;
+    filters: [type: "no"]
+  }
+
+  measure: forecasted_revenue_filtered_with_promotion {
+    hidden: yes
+    type: sum
+    sql: ${predicted_revenue_promotion} ;;
+    filters: [type: "yes"]
+  }
+
+  measure: actual_plus_forecasted_revenue {
+    group_label: "Actual + Forecasted"
+    label: "Total Revenue (Actual + Forecasted)"
+    type: number
+    sql: ${actual_revenue_filtered}+${forecasted_revenue_filtered_with_promotion} ;;
+    value_format_name: usd
+  }
+
+  measure: actual_gross_margin_filtered {
+    hidden: yes
+    type: sum
+    sql: ${gross_margin};;
+    filters: [type: "no"]
+  }
+
+  measure: forecasted_gross_margin_filtered_with_promotion {
+    hidden: yes
+    type: sum
+    sql: ${gross_margin_promotion} ;;
+    filters: [type: "yes"]
+  }
+
+  measure: actual_plus_forecasted_gross_margin {
+    group_label: "Actual + Forecasted"
+    label: "Total Gross Margin (Actual + Forecasted)"
+    type: number
+    sql: ${actual_gross_margin_filtered}+${forecasted_gross_margin_filtered_with_promotion} ;;
+    value_format_name: usd
+  }
+
+  measure: actual_bottles_filtered {
+    hidden: yes
+    type: sum
+    sql: ${bottles_sold};;
+    filters: [type: "no"]
+  }
+
+  measure: forecasted_bottles_filtered_with_promotion {
+    hidden: yes
+    type: sum
+    sql: ${predicted_total_bottles_sold_promotion} ;;
+    filters: [type: "yes"]
+  }
+
+  measure: actual_plus_forecasted_bottles {
+    group_label: "Actual + Forecasted"
+    label: "Total Bottles Sold (Actual + Forecasted)"
+    type: number
+    sql: ${actual_bottles_filtered}+${forecasted_bottles_filtered_with_promotion} ;;
+    value_format_name: usd
+  }
+
+
 
   set: detail {
     fields: [
