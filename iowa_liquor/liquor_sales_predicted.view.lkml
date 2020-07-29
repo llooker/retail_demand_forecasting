@@ -321,7 +321,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
   measure: total_predicted_gross_margin {
     group_label: "Predicted"
     type: sum
-    sql: ${gross_margin}*${predicted_total_bottles_sold} ;;
+    sql: (${state_bottle_retail}-${state_bottle_cost})*${predicted_total_bottles_sold} ;;
     value_format_name: usd
   }
 
@@ -489,6 +489,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${revenue};;
     filters: [type: "no"]
+    value_format_name: usd
   }
 
   measure: forecasted_revenue_filtered_with_promotion {
@@ -496,6 +497,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${predicted_revenue_promotion} ;;
     filters: [type: "yes"]
+    value_format_name: usd
   }
 
   measure: actual_plus_forecasted_revenue {
@@ -511,6 +513,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${gross_margin};;
     filters: [type: "no"]
+    value_format_name: usd
   }
 
   measure: forecasted_gross_margin_filtered_with_promotion {
@@ -518,6 +521,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${gross_margin_promotion} ;;
     filters: [type: "yes"]
+    value_format_name: usd
   }
 
   measure: actual_plus_forecasted_gross_margin {
@@ -533,6 +537,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${bottles_sold};;
     filters: [type: "no"]
+    value_format_name: decimal_0
   }
 
   measure: forecasted_bottles_filtered_with_promotion {
@@ -540,6 +545,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: sum
     sql: ${predicted_total_bottles_sold_promotion} ;;
     filters: [type: "yes"]
+    value_format_name: decimal_0
   }
 
   measure: actual_plus_forecasted_bottles {
