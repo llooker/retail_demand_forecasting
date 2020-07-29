@@ -547,7 +547,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     label: "Total Bottles Sold (Actual + Forecasted)"
     type: number
     sql: ${actual_bottles_filtered}+${forecasted_bottles_filtered_with_promotion} ;;
-    value_format_name: usd
+    value_format_name: decimal_0
   }
 
 
