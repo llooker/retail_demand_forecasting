@@ -563,12 +563,12 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     type: string
     sql: ${brand} ;;
     html: {% if brand._value == "Captain Morgan" %} <img src="https://i.ibb.co/t8BH0H9/6596980-preview.png" width="135px" height="auto">
-          {% elsif brand._value == 'Titos' %} <img src="https://i.ibb.co/dpXSjn1/151-1515490-0-replies-0-retweets-0-likes-titos-vodka.png" width="135px" height="auto">
+          {% elsif brand._value == 'Titos' %} <img src="https://i.ibb.co/P6b0MtJ/webb-banks-brand-titos-handmade-vodka2a.png"  width="135px" height="auto">
           {% elsif brand._value == 'Crown Royal' %} <img src="https://i.ibb.co/dtBpYsT/crown-royal-logo.png" width="135px" height="auto">
           {% elsif brand._value == 'Fireball' %} <img src="https://i.ibb.co/sH8RxtT/6759031-preview.jpg"  width="135px" height="auto">
           {% elsif brand._value == 'Hawkeye' %} <img src="https://i.ibb.co/R6Gt3YG/10932-1.png" width="135px" height="auto">
           {% elsif brand._value == 'Hennessy' %} <img src="https://i.ibb.co/bQQtJvQ/hennessy-logo-black-and-white.png" width="135px" height="auto">
-          {% elsif brand._value == 'Jack Daniels' %} <img src="https://i.ibb.co/5GkPTzc/jack-daniels-logo-large-png-12.png"  width="135px" height="auto">
+          {% elsif brand._value == 'Jack Daniels' %} <img src="https://i.ibb.co/z7BXsxZ/jack-daniels-logo-png-1.png"  width="135px" height="auto">
           {% elsif brand._value == 'Smirnoff' %} <img src="https://i.ibb.co/hc6VwKx/6779046-preview.png"  width="135px" height="auto">
           {% else %} {{value}}
           {% endif %} ;;

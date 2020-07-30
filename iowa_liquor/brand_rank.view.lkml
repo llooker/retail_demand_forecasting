@@ -37,7 +37,15 @@ parameter: rank_metric {
 dimension: brand {
   hidden: yes
 }
+measure: metric {
+  view_label: "Item"
+  label_from_parameter: rank_metric
+  type: sum
+  sql: ${TABLE}.metric ;;
+  value_format: "[<100]$0.00;[<1000000]$0.0,,\K;$0.0,,\M"
+}
 dimension: rank {
+  primary_key: yes
   type: number
   view_label: "Item"
   label: "Brand Rank"
