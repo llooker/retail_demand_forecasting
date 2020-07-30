@@ -257,6 +257,11 @@ view: metrics {
     description: "This field can be aggregated across DMA but NOT across search term."
     type: sum
     sql: ${population_adjusted_score_wo_w} ;;
+    link: {
+      label: "See Google Trends for {{ liquor_sales_predicted.brand._value }}"
+      url: "https://trends.google.com/trends/explore?q={{ liquor_sales_predicted.brand._value | encode uri }}&geo=US"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
   }
 
   dimension: population_adjusted_score_yo2_y {
@@ -334,6 +339,11 @@ view: metrics {
     label: "Search Term"
     type: string
     sql: ${TABLE}.term ;;
+    link: {
+      label: "See Google Trends for {{ value }}"
+      url: "https://trends.google.com/trends/explore?q={{ value | encode uri }}&geo=US"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
   }
 
 #   dimension: brand {

@@ -138,6 +138,11 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     view_label: "Item"
     type: string
     sql: ${TABLE}.brand ;;
+    link: {
+      label: "See Google Trends for {{ value }}"
+      url: "https://trends.google.com/trends/explore?q={{ value | encode uri }}&geo=US"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
 #     sql:
 #      CASE WHEN lower(${item_description}) LIKE '%titos%' THEN 'Titos'
 #      WHEN lower(${item_description}) LIKE '%smirnoff%' THEN 'Smirnoff'
