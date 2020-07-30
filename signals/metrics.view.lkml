@@ -258,10 +258,16 @@ view: metrics {
     type: sum
     sql: ${population_adjusted_score_wo_w} ;;
     link: {
-      label: "See Google Trends for {{ liquor_sales_predicted.brand._value }}"
+      label: "Google Trends for {{ liquor_sales_predicted.brand._value }}"
       url: "https://trends.google.com/trends/explore?q={{ liquor_sales_predicted.brand._value | encode uri }}&geo=US"
       icon_url: "https://www.google.com/favicon.ico"
     }
+    link: {
+      label: "Google News for {{ liquor_sales_predicted.brand._value }}"
+      url: "https://news.google.com/search?q={{ liquor_sales_predicted.brand._value | encode uri }}&hl=en-US&gl=US&ceid=US%3Aen"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
+
   }
 
   dimension: population_adjusted_score_yo2_y {
