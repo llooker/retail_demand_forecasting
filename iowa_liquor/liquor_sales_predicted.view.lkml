@@ -51,6 +51,23 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: ${TABLE}.pk ;;
   }
 
+  dimension_group: today_date {
+    timeframes: [day_of_week,month_name,day_of_month,raw]
+    hidden: yes
+    label: "Today's Date"
+    type: time
+    sql: DATE('2020-06-01') ;;
+    datatype: date
+  }
+
+  dimension: date_display {
+    label: "Today's Date"
+    type: string
+    sql: 1 ;;
+    html: <a> {{ today_date_day_of_week._value}}, {{ today_date_month_name._value }} {{ today_date_day_of_month._value }} </a>;;
+
+  }
+
   dimension: type {
     label: "Forecasted"
     type: yesno
