@@ -52,7 +52,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
   }
 
   dimension_group: today_date {
-    timeframes: [day_of_week,month_name,day_of_month,raw]
+    timeframes: [day_of_week,month_name,day_of_month,year,raw]
     hidden: yes
     label: "Today's Date"
     type: time
@@ -64,7 +64,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     label: "Today's Date"
     type: string
     sql: 1 ;;
-    html: <a style="background: #FFF;float: center; padding:15px; font-weight: bold;font-size: 85%;"> {{ today_date_day_of_week._value}}, {{ today_date_month_name._value }} {{ today_date_day_of_month._value }} </a>;;
+    html: <a style="background: #FFF;float: center; padding:15px; font-weight: bold;font-size: 65%;"> {{ today_date_day_of_week._value}}, {{ today_date_month_name._value }} {{ today_date_day_of_month._value }} {{ today_date_year._value }} </a>;;
 
   }
 
