@@ -219,6 +219,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     group_label: "Actual"
     type: sum
     sql: ${bottles_sold} ;;
+    value_format_name: decimal_0
   }
 
   dimension: sale_dollars {
