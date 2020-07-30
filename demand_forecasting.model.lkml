@@ -18,6 +18,12 @@ explore: liquor_sales_predicted {
   view_label: "Liquor Sales"
   label: "Iowa Liquor Sales (Predicted Only)"
 
+  join: brand_rank {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${liquor_sales_predicted.brand} = ${brand_rank.brand} ;;
+  }
+
   join: metrics {
     view_label: "Signals"
     type: left_outer
