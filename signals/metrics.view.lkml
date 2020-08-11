@@ -257,11 +257,11 @@ view: metrics {
     description: "This field can be aggregated across DMA but NOT across search term."
     type: sum
     sql: ${population_adjusted_score_wo_w} ;;
-    link: {
-      label: "Google Trends for {{ liquor_sales_predicted.brand._value }}"
-      url: "https://trends.google.com/trends/explore?q={{ liquor_sales_predicted.brand._value | encode uri }}&geo=US"
-      icon_url: "https://www.google.com/favicon.ico"
-    }
+#     link: {
+#       label: "Google Trends for {{ liquor_sales_predicted.brand._value }}"
+#       url: "https://trends.google.com/trends/explore?q={{ liquor_sales_predicted.brand._value | encode uri }}&geo=US"
+#       icon_url: "https://www.google.com/favicon.ico"
+#     }
     link: {
       label: "Google News for {{ liquor_sales_predicted.brand._value }}"
       url: "https://news.google.com/search?q={{ liquor_sales_predicted.brand._value | encode uri }}&hl=en-US&gl=US&ceid=US%3Aen"
@@ -345,11 +345,11 @@ view: metrics {
     label: "Search Term"
     type: string
     sql: ${TABLE}.term ;;
-    link: {
-      label: "See Google Trends for {{ value }}"
-      url: "https://trends.google.com/trends/explore?q={{ value | encode uri }}&geo=US"
-      icon_url: "https://www.google.com/favicon.ico"
-    }
+#     link: {
+#       label: "See Google Trends for {{ value }}"
+#       url: "https://trends.google.com/trends/explore?q={{ value | encode uri }}&geo=US"
+#       icon_url: "https://www.google.com/favicon.ico"
+#     }
   }
 
 #   dimension: brand {
