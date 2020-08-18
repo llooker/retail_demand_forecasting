@@ -2,7 +2,7 @@ connection: "looker-private-demo"
 
 include: "/iowa_liquor/*.view.lkml"
 include: "/signals/*.view.lkml"
-# include: "/views/*.view.lkml"
+include: "/dashboards/*.dashboard"
 
 persist_for: "24 hours"
 
