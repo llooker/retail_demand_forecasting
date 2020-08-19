@@ -36,7 +36,7 @@ SELECT ROW_NUMBER() OVER(ORDER BY store_number,item_number) as pk
       ,city
       ,zip_code
       ,county_number
-      ,category
+      ,category_name as category
       ,CAST(vendor_number as INT64) as vendor_number
       ,item_number
       ,DATE(date) as date

@@ -5,7 +5,7 @@ view: liquor_sales_predicted {
       ,city
       ,zip_code
       ,county_number
-      ,category
+      ,category_name as category
       ,vendor_number
       ,item_number
       ,DATE(date) as date
