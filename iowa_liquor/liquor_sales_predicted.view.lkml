@@ -14,15 +14,13 @@ view: liquor_sales_predicted {
       ,item_description
       , SPLIT(TRIM(replace(replace(store_location,'POINT (',''),')','')),' ')[safe_ordinal(1)] as store_longitude
       , SPLIT(TRIM(replace(replace(store_location,'POINT (',''),')','')),' ')[safe_ordinal(2)] as store_latitude
-      ,CASE WHEN lower(item_description) LIKE '%titos%' THEN 'Titos'
-            WHEN lower(item_description) LIKE '%smirnoff%' THEN 'Smirnoff'
-            WHEN lower(item_description) LIKE '%jack daniels%' THEN 'Jack Daniels'
-            WHEN lower(item_description) LIKE '%hennessy%' THEN 'Hennessy'
-            WHEN lower(item_description) LIKE '%hawkeye%' THEN 'Hawkeye'
-            WHEN lower(item_description) LIKE '%fireball%' THEN 'Fireball'
-            WHEN lower(item_description) LIKE '%crown royal%' THEN 'Crown Royal'
-            WHEN lower(item_description) LIKE '%captain morgan%' THEN 'Captain Morgan'
-            WHEN lower(item_description) LIKE '%black velvet%' THEN 'Fireball'
+      ,CASE WHEN lower(item_description) LIKE '%jim beam%' THEN 'Jim Beam'
+            WHEN lower(item_description) LIKE '%makers%' THEN 'Makers Mark'
+            WHEN lower(item_description) LIKE '%hornitos%' THEN 'Hornitos'
+            WHEN lower(item_description) LIKE '%sauza%' THEN 'Sauza'
+            WHEN lower(item_description) LIKE '%effen%' THEN 'Effen'
+            WHEN lower(item_description) LIKE '%pinnacle%' THEN 'Pinnacle'
+            WHEN lower(item_description) LIKE '%cruzan%' THEN 'Cruzan'
             ELSE 'All Other Brands'
           END  AS brand
       ,SUM(bottle_volume_ml) as bottle_volume_ml
@@ -152,6 +150,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
   }
 
   dimension: brand {
+    drill_fields: [item_description]
     view_label: "Item"
     type: string
     sql: ${TABLE}.brand ;;
