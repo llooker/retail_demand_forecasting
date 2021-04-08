@@ -68,7 +68,8 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
 
   }
 
-  parameter: calendar {
+  parameter: calendar_type {
+    type: string
     allowed_value: {
       label: "Finance Calendar"
       value: "'finance'"
