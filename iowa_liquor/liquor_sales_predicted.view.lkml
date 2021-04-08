@@ -68,6 +68,17 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
 
   }
 
+  parameter: calendar {
+    allowed_value: {
+      label: "Finance Calendar"
+      value: "'finance'"
+    }
+    allowed_value: {
+      label: "Subscription Offset Calendar"
+      value: "'subscription'"
+    }
+  }
+
   dimension: type {
     label: "Forecasted"
     type: yesno
@@ -238,6 +249,8 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: (${state_bottle_retail}-${state_bottle_cost})*${bottles_sold} ;;
     value_format_name: usd
   }
+
+
 
   measure: total_gross_margin {
     group_label: "Actual"
