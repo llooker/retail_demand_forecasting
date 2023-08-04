@@ -157,7 +157,7 @@ sql_trigger_value: SELECT CURRENT_DATE ;;
     sql: ${TABLE}.brand ;;
     link: {
       label: "See Google Trends for {{ value }}"
-      url: "https://trends.google.com/trends/explore?q={{ value | encode uri }}&geo=US"
+      url: "https://trends.google.com/trends/explore?geo=US&hl=en-US"
       icon_url: "https://www.google.com/favicon.ico"
     }
 #     sql:
